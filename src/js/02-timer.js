@@ -18,7 +18,13 @@ const options = {
   onClose(selectedDates) {
     futureDate = selectedDates[0];
     if (futureDate - new Date() <= 0) {
-      Notify.failure('Please choose a date in the future');
+      Notify.failure('Please choose a date in the future', {
+        width: '500px',
+        position: 'center-center',
+        fontSize: '40px',
+        clickToClose: true,
+        background: '#ff5757',
+      });
       return;
     }
     refs.btnStart.disabled = false;
