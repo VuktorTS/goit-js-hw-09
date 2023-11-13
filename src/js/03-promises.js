@@ -39,7 +39,7 @@ function onBtnSubmit(event) {
       .catch(({ position, delay }) => {
         Notify.failure(`Rejected promise ${position} in ${delay}ms`);
       });
+    form.reset();
     delayPromise += stepPromise;
   }
-  event.currentTarget.reset();
 }

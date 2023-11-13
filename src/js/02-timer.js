@@ -5,7 +5,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const refs = {
   picker: document.querySelector('#datetime-picker'),
   btnStart: document.querySelector('[data-start]'),
-  daus: document.querySelector('[data-days]'),
+  days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
   minutes: document.querySelector('[data-minutes]'),
   seconds: document.querySelector('[data-seconds]'),
@@ -31,6 +31,8 @@ const options = {
   },
 };
 
+flatpickr(refs.picker, options);
+
 let setId = null;
 let futureDate = 0;
 
@@ -47,12 +49,9 @@ function onClick(event) {
 function changeDate() {
   const dateCountdown = futureDate - new Date();
   if (dateCountdown >= 0) {
-    const daus = convertMs(dateCountdown).days;
-    const hours = convertMs(dateCountdown).hours;
-    const minutes = convertMs(dateCountdown).minutes;
-    const seconds = convertMs(dateCountdown).seconds;
+    const { days, hours, minutes, seconds } = convertMs(dateCountdown);
 
-    refs.daus.textContent = addLeadingZero(daus);
+    refs.days.textContent = addLeadingZero(days);
     refs.hours.textContent = addLeadingZero(hours);
     refs.minutes.textContent = addLeadingZero(minutes);
     refs.seconds.textContent = addLeadingZero(seconds);
@@ -72,8 +71,6 @@ function changeDate() {
 function addLeadingZero(value) {
   return String(value).padStart(2, '0');
 }
-
-flatpickr(refs.picker, options);
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time

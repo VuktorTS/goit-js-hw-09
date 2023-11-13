@@ -13,6 +13,7 @@ refs.btnClickStart.addEventListener('click', onClickStart);
 refs.btnClickStop.addEventListener('click', onClickStop);
 
 function onClickStart(event) {
+  chengeBodyColor();
   setId = setInterval(chengeBodyColor, 1000);
   refs.btnClickStart.disabled = true;
 }
